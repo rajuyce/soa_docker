@@ -3,6 +3,14 @@
   hosts: oracle01 
   become: true
   tasks:
+  - name: Remove SOA AS old container
+    docker_container:
+     name: soaas
+     state: absent
+  - name: Remove oSOA DB old container
+    docker_container:
+     name: soadb
+     state: absent
   - name: Delete a network, disconnecting all containers
     docker_network:
      name: SOANet
@@ -11,10 +19,6 @@
   - name: Create a network
     docker_network:
      name: SOANet
-  - name: Stop a container
-    docker_container:
-     name: soadb
-     state: absent
   - name: Copy environment file to Target node.
     copy: src=/opt/soa_demo/db.env dest=/opt/oracle/db.env
   - name: Crate SOA DB Container
