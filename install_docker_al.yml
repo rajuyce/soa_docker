@@ -1,0 +1,14 @@
+---
+- name: Install Docker 
+  hosts: oracle01 
+  become: yes
+  tasks: 
+  - name: Install PIP
+    package: name=python-pip state=installed
+  - name: Install Docker
+    package: name=docker state=installed
+  - name: Start Docker
+    service: name=docker state=started
+  - name: Install docker-py
+    pip: name=docker-py state=forcereinstall
+...

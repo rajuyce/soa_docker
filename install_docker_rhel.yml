@@ -1,0 +1,24 @@
+---
+- name: Install Docker 
+  hosts: oracle01 
+  become: yes
+  tasks:
+  - name: Install wget
+    package: name=wget state=installed
+  - name: Prepare Install folder
+    file: path=/opt/rpms state=directory
+  - name: Download rpm 
+    get_url: url=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm dest=/opt/rpms/epel-release-latest-7.noarch.rpm
+  - name: Install rpm 
+    yum: name=/opt/rpms/epel-release-latest-7.noarch.rpm state=present
+  - name: Install PIP
+    package: name=python-pip state=installed
+  - name: enable rhui-REGION repository
+    action: shell yum-config-manager --enable rhui-REGION-rhel-server-extras
+  - name: Install Docker
+    package: name=docker state=installed
+  - name: Start Docker
+    service: name=docker state=started
+  - name: Install docker-py
+    pip: name=docker-py state=forcereinstall
+...

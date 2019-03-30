@@ -1,0 +1,34 @@
+---
+- name: Create Docker Network
+  hosts: oracle01 
+  become: true
+  tasks:
+  - name: Delete a network, disconnecting all containers
+    docker_network:
+     name: SOANet
+     state: absent
+     force: yes
+  - name: Create a network
+    docker_network:
+     name: SOANet
+  - name: Stop a container
+    docker_container:
+     name: soadb
+     state: absent
+  - name: Copy environment file to Target node.
+    copy: src=/opt/soa_demo/db.env dest=/opt/oracle/db.env
+  - name: Crate SOA DB Container
+    docker_container:
+     name: soadb
+     image: ynraju4/oracle12c
+     env_file: /opt/oracle/db.env
+     state: started
+     ports:
+      - "1521:1521"
+      - "5500:5500"
+     networks:
+      - name: SOANet
+     tty: true
+     detach: true
+  - pause: minutes=8
+...

@@ -1,0 +1,25 @@
+---
+- name: Create SOA Container
+  hosts: oracle01 
+  become: true
+  tasks:
+  - name: Stop SOA old container
+    docker_container:
+     name: soaas
+     state: absent
+  - name: Copy SOA Environment file to Target node.
+    copy: src=/opt/soa_demo/soa.env dest=/opt/oracle/soa.env
+  - name: Creating SOA New Container
+    docker_container:
+     name: soaas
+     image: ynraju4/soasuite12c
+     env_file: /opt/oracle/soa.env
+     state: started
+     ports:
+      - "7001:7001"
+     networks:
+      - name: SOANet
+     tty: true
+     detach: true
+  - pause: minutes=5
+...
