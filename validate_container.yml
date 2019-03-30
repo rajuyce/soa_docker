@@ -1,0 +1,11 @@
+---
+- name: Validate SOA Admin console
+  hosts: oracle01
+  tasks:
+  - name: Validate Admin Console
+    uri:
+     url: http://54.88.155.223:7001/console 
+     return_content: yes
+    register: this
+    failed_when: "'WebLogic Server Version: 12.2.1.2.0' not in this.content"
+...

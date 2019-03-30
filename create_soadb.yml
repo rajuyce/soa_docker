@@ -24,7 +24,7 @@
   - name: Crate SOA DB Container
     docker_container:
      name: soadb
-     image: ynraju4/oracle12c
+     image: ynraju4/oracle18c
      env_file: /opt/oracle/db.env
      state: started
      ports:
