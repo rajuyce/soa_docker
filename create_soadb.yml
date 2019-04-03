@@ -20,7 +20,7 @@
     docker_network:
      name: SOANet
   - name: Copy environment file to Target node.
-    copy: src=/opt/soa_demo/db.env dest=/opt/oracle/db.env
+    copy: src=/opt/oracle/db.env dest=/opt/oracle/db.env
   - name: Crate SOA DB Container
     docker_container:
      name: soadb
