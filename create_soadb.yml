@@ -19,8 +19,6 @@
   - name: Create a network
     docker_network:
      name: SOANet
-  - name: Create Direcoty for copy environment files
-    file: path=/opt/oracle state=directory
   - name: Copy environment file to Target node.
     copy: src=/opt/oracle/db.env dest=/opt/oracle/db.env
   - name: Crate SOA DB Container
