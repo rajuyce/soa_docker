@@ -8,7 +8,7 @@
      name: soaas
      state: absent
   - name: Copy SOA Environment file to Target node.
-    copy: src=/opt/soa_demo/soa.env dest=/opt/oracle/soa.env
+    copy: src=/opt/oracle/soa.env dest=/opt/oracle/soa.env
   - name: Creating SOA New Container
     docker_container:
      name: soaas
