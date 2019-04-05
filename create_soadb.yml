@@ -12,7 +12,9 @@
      name: soadb
      state: absent
   - name: Delete a network, disconnecting all containers
-    action: shell docker network rm SOANet
+    docker_network:
+     name: SOANet
+     state: absent
   - name: Create a network
     docker_network:
      name: SOANet
