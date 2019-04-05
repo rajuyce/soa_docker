@@ -13,8 +13,6 @@
      state: absent
   - name: Delete a network, disconnecting all containers
     action: shell docker network rm SOANet
-     state: absent 
-     force: yes
   - name: Create a network
     docker_network:
      name: SOANet
