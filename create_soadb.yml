@@ -13,11 +13,11 @@
      state: absent
   - name: Delete a network, disconnecting all containers
     docker_network:
-     name: SOANet
+     name: SOANet1
      state: absent
-  - name: Create a network
+   - name: Create a network
     docker_network:
-     name: SOANet
+     name: SOANet1
   - name: Create Direcoty for copy environment files
     file: path=/opt/oracle state=directory
   - name: Copy environment file to Target node.
@@ -32,7 +32,7 @@
       - "1521:1521"
       - "5500:5500"
      networks:
-      - name: SOANet
+      - name: SOANet1
      tty: true
      detach: true
   - pause: minutes=8
