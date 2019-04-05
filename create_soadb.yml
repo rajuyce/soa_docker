@@ -11,7 +11,7 @@
     docker_container:
      name: soadb
      state: absent
-  - name: Delete a network, disconnecting all containers
+  - name: Delete old network with name SOANet1
     docker_network:
      name: SOANet1
      state: absent
