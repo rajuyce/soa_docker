@@ -15,7 +15,7 @@
     docker_network:
      name: SOANet1
      state: absent
-   - name: Create a network
+  - name: Create a network
     docker_network:
      name: SOANet1
   - name: Create Direcoty for copy environment files
